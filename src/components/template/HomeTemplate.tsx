@@ -20,9 +20,10 @@ export const HomeTemplate = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const dispatchOrigin = useDispatch();
-  const { movieList, isFetchingMovieList } = useSelector(
+  const { movieList, isFetchingMovieList,isFetchingMovieList2 } = useSelector(
     (state: RootState) => state.quanLyPhim
   );
+
   const {
     heThongRap,
     cumRap,
@@ -34,6 +35,7 @@ export const HomeTemplate = () => {
 
   useEffect(() => {
     dispatch(quanLyPhimThunk());
+    
   }, []);
 
   useEffect(() => {
@@ -109,6 +111,9 @@ export const HomeTemplate = () => {
 
   return (
     <div className=" p-5 rounded-sm ">
+      <div className={`top-0 left-0 h-screen w-screen bg-black z-50 ${isFetchingMovieList2?'fixed':'hidden'}`}>
+        Loading
+      </div>
       <div className="grid xl:grid-cols-4 sm:grid-cols-2 gap-[30px] ">
         {movieList?.map((movie) => {
           // Lưu ý: map(()=>{const.... return()}) còn nếu muốn return về 1 cái jsx: map(()=>())

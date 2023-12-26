@@ -1,9 +1,12 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "../template/PageHeader/NavBar";
 import PageFooter from "../template/PageFooter/PageFooter";
+import { useSelector } from "react-redux";
+import { RootState } from "store";
 
 export const HomeLayout = () => {
-
+  const {isFetchingMovieList2} = useSelector((state:RootState)=>state.quanLyPhim)
+ console.log(isFetchingMovieList2)
     //BUG
   // if (isFetchingMovieList) {
   //   return (

@@ -8,6 +8,7 @@ export const loginThunk = createAsyncThunk(
   async (payload: LoginSchemaType, { rejectWithValue }) => {
     try {
       const data = await quanLyNguoiDung.login(payload);
+      console.log("test ne",data.data.content);
       return data.data.content;
     } catch (error) {
       return rejectWithValue(error);

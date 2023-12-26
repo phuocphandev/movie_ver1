@@ -20,7 +20,8 @@ export const RegisterTemplate = () => {
   const navigate = useNavigate();
   const onSubmit: SubmitHandler<RegisterSchemaType> = async (value) => {
     try {
-      await quanLyNguoiDung.register(value);
+      const data = await quanLyNguoiDung.register(value);
+      console.log(data);
       toast.success("Create account success!");
       navigate(PATH.login);
     } catch (error) {

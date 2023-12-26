@@ -5,16 +5,22 @@ import { Movie } from "types/QuanLyPhim";
 type QuanLyPhimInitialState = {
   movieList: Movie[];
   isFetchingMovieList: boolean;
+  isFetchingMovieList2:boolean;
 };
 const initialState: QuanLyPhimInitialState = {
   movieList: [],
   isFetchingMovieList: true,
+  isFetchingMovieList2:true,
 };
 
 export const quanLyPhimSlice = createSlice({
   name: "quanLyPhim",
   initialState,
-  reducers: {},
+  reducers: {
+    luuFetching:(state,actions)=>{
+      state.isFetchingMovieList2= actions.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(quanLyPhimThunk.pending, (state) => {
@@ -26,6 +32,7 @@ export const quanLyPhimSlice = createSlice({
       .addCase(quanLyPhimThunk.fulfilled, (state, { payload }) => {
         state.movieList = payload;
         state.isFetchingMovieList = false;
+        state.isFetchingMovieList2 =false;
       });
   },
 });
